@@ -54,6 +54,8 @@ function buscarPais() {
         ? Object.values(pais.currencies).map(item => item.name).join(", ")
         : "N/A";
 
+      /*chequear en la pagina las demas funciones en caso de que quieran agregar mass*/
+
       document.getElementById("resultado").innerHTML = `
         <h2>${nombrePais}</h2>
         <img src="${bandera}" width="150">

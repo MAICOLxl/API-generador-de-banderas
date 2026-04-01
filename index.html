@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Paises</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Banderas de Paises</h1>
+        <p>Escribe el nombre de un pais para ver su bandera e informacion adicional.</p>
+    </header>
+
+    <main>
+        <section>
+            <label for="pais">Nombre del pais:</label>
+            <input type="text" id="pais" placeholder="Ejemplo: Mexico">
+            <button onclick="buscarPais()">Buscar</button>
+        </section>
+
+        <section id="resultado">
+            <p>Aqui aparecera la informacion del pais.</p>
+        </section>
+    </main>
+
+    <script src="funciones.js"></script>
+</body>
+</html>

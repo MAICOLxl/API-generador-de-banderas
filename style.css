@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #667eea;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px black;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contenedor-seleccion {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgb(93, 89, 89);
+  animation: slideUp 0.6s ease-in-out;
+}
+
+.busqueda-wrapper {
+  margin-bottom: 30px;
+}
+
+.busqueda-wrapper label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.autocomplete-container {
+  position: relative;
+}
+
+#buscar-pais {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+#buscar-pais:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#sugerencias {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#sugerencias li {
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #eee;
+}
+
+#sugerencias li:last-child {
+  border-bottom: none;
+}
+
+#sugerencias li:hover {
+  background-color: #f5f5f5;
+}
+
+#sugerencias li.sin-resultados {
+  cursor: default;
+  color: #999;
+  padding: 20px;
+}
+
+.mini-bandera {
+  width: 30px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.paises-seleccionados {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid #eee;
+}
+
+.paises-seleccionados h3 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.lista-paises {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.pais-tag {
+  background: #189eb3;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.tag-bandera {
+  width: 35px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.pais-tag span {
+  flex: 1;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-eliminar {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-eliminar:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+.btn-comparar {
+  background: #18b349;
+  color: white;
+}
+
+.btn-comparar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-comparar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-limpiar {
+  background: #ddd;
+  color: #333;
+}
+
+.btn-limpiar:hover {
+  background: #ccc;
+  transform: translateY(-2px);
+}
+
+.resultado-comparacion {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.6s ease-in-out;
+}
+
+.tabla-comparacion {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+thead {
+  background: black;
+  color: white;
+}
+
+th {
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #ddd;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Fila de bandera con altura adaptada */
+.fila-bandera td {
+  padding: 20px 15px;
+}
+
+.bandera-comparacion {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+.bandera-comparacion:hover {
+  transform: scale(1.05);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2em;
+  }
+
+  .contenedor-seleccion {
+    padding: 20px;
+  }
+
+  .lista-paises {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  table {
+    font-size: 0.95em;
+  }
+
+  th, td {
+    padding: 12px;
+  }
+
+  .bandera-comparacion {
+    width: 90px;
+    height: 60px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+
+  #sugerencias li {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  .contenedor-seleccion,
+  .resultado-comparacion {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .lista-paises {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  .bandera-comparacion {
+    width: 70px;
+    height: 50px;
+  }
+}

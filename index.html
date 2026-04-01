@@ -3,27 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Paises</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Comparador de Paises</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Banderas de Paises</h1>
-        <p>Escribe un pais para ver su bandera e informacion adicional.</p>
+        <h1>🌍 Comparador de Países</h1>
     </header>
-
+    
     <main>
-        <section>
-            <label for="pais">Nombre del país:</label>
-            <input type="text" id="pais" placeholder="Ejemplo: Mexico">
-            <button onclick="buscarPais()">Buscar</button>
+        <section class="contenedor-seleccion">
+            <div class="busqueda-wrapper">
+                <label for="buscar-pais">Buscar país:</label>
+                <div class="autocomplete-container">
+                    <input 
+                    type="text" 
+                    id="buscar-pais" 
+                    placeholder="Ejemplo: México, España, China..."
+                    autocomplete="off"
+                    >
+                    <ul id="sugerencias" class="sugerencias"></ul>
+                </div>
+                <p>Selecciona 2 o más países para compararlos por población, capital, región, idioma y bandera.</p>
+            </div>
+
+            <div class="paises-seleccionados">
+                <h3>Países Seleccionados:</h3>
+                <div id="lista-paises" class="lista-paises"></div>
+                <button id="btn-comparar" class="btn btn-comparar" onclick="compararPaises()" disabled>
+                    Comparar Países
+                </button>
+                <button id="btn-limpiar" class="btn btn-limpiar" onclick="limpiarSeleccion()">
+                    Limpiar
+                </button>
+            </div>
         </section>
 
-        <section id="resultado">
-            <p>Informacion del pais.</p>
+        <section id="resultado" class="resultado-comparacion">
+            <!-- Tabla de comparación se insertará aquí -->
+             <h5>Tabla de comparación</h5>
         </section>
     </main>
 
-    <script src="funciones.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

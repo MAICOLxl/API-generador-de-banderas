@@ -1,3 +1,4 @@
+/*funcion para poder buscar en español y sin tilde*/
 function normalizarTexto(texto) {
   return (texto || "")
     .toLowerCase()
